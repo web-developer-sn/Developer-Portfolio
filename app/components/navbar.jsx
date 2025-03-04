@@ -1,5 +1,7 @@
 // @flow strict
+import { Avatar } from "@mui/joy";
 import Link from "next/link";
+import imag from "../../public/image/logo512.png"
 
 
 function Navbar() {
@@ -10,7 +12,7 @@ function Navbar() {
           <Link
             href="/"
             className=" text-[#16f2b3] text-3xl font-bold">
-            SATENDRA
+            <Avatar size="lg" alt="SN" src={"./image/logo512.png"} ></Avatar>
           </Link>
         </div>
 
