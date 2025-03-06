@@ -62,40 +62,42 @@ function ContactForm() {
   const [phone, setPhone] = React.useState();
   const [message, setMessage] = React.useState("");
   const Submit = (e) => {
-      e.preventDefault()
+    e.preventDefault()
 
 
   }
   const contactJSON = { name, email, phone, message }
-  const [valid,setValid]=React.useState(false)
+  const [valid, setValid] = React.useState(false)
   const HandleSend = (e) => {
+
     e.preventDefault()
-      if(name===""){
-          setValid(true)
-          toast.error("Name is required")
-          return
-      }
-      setSending(true)
-      axios
-          .post(`https://server-nine-sooty.vercel.app/contact`, contactJSON)
-          .then((response) => {
-            
-            
-              if (response.data?.type === "success") {
-                  toast.success("Message sent successfully!")
-                  setSending(false)
-                  setMessage("");
-                  setPhone("")
-                  setEmail("");
-                  setName("");
-
-              }
+    if (name === "") {
+      setValid(true)
+      toast.error("Name is required")
+      return
+    }
+    setSending(true)
+    
+    axios
+      .post(`https://server-nine-sooty.vercel.app/contact`, contactJSON)
+      .then((response) => {
 
 
-          })
-          .catch((error) => {
-            toast.error(`${error}`)
-          });
+        if (response.data?.type === "success") {
+          toast.success("Message sent successfully!")
+          setSending(false)
+          setMessage("");
+          setPhone("")
+          setEmail("");
+          setName("");
+
+        }
+
+
+      })
+      .catch((error) => {
+        toast.error(`${error}`)
+      });
   }
 
   return (
@@ -158,12 +160,12 @@ function ContactForm() {
               disabled={isLoading}
             >
               {
-                isLoading ?
-                <CircularProgress />:
-                <span className="flex items-center gap-1">
-                  Send Message
-                  <TbMailForward size={20} />
-                </span>
+                sending ?
+                  <CircularProgress /> :
+                  <span className="flex items-center gap-1">
+                    Send Message
+                    <TbMailForward size={20} />
+                  </span>
               }
             </button>
           </div>
