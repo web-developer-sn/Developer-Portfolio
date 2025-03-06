@@ -9,34 +9,34 @@ import "./css/card.scss";
 import "./css/globals.scss";
 const inter = Inter({ subsets: ["latin"] });
 import QueryClientProvider from './utils/ReactQueryProvider'
-// export const metadata = {
-//   title: "Satendra | Full Stack Developer & MERN Expert",
-//   description:
-//     "Discover the portfolio of Satendra, a skilled Full Stack Developer specializing in the MERN stack (MongoDB, Express, React, Node.js). Passionate about coding, problem-solving, and building scalable web applications. Open to collaborations and always eager to learn new technologies.",
-//   keywords: [
-//     "satendra",
-//     "snboy",
-//     "mern stack developer satendra",
-//     "full stack developer satendra",
-//     "react developer satendra",
-//     "node.js developer satendra",
-//     "mongodb expert satendra",
-//     "express.js developer satendra",
-//     "web developer portfolio satendra",
-//     "javascript developer satendra",
-//     "frontend developer satendra",
-//     "backend developer satendra",
-//     "satendra mern expert",
-//     "snboy developer",
-//     "snboy portfolio",
-//     "mern stack expert",
-//     "mern developer snboy",
-//     "full stack engineer satendra",
-//     "software engineer satendra",
-//     "next.js developer satendra",
-//     "satendra js developer",
-//   ],
-// };
+export const metadata = {
+  title: "Satendra | Full Stack Developer & MERN Expert",
+  description:
+    "Discover the portfolio of Satendra, a skilled Full Stack Developer specializing in the MERN stack (MongoDB, Express, React, Node.js). Passionate about coding, problem-solving, and building scalable web applications. Open to collaborations and always eager to learn new technologies.",
+  keywords: [
+    "satendra",
+    "snboy",
+    "mern stack developer satendra",
+    "full stack developer satendra",
+    "react developer satendra",
+    "node.js developer satendra",
+    "mongodb expert satendra",
+    "express.js developer satendra",
+    "web developer portfolio satendra",
+    "javascript developer satendra",
+    "frontend developer satendra",
+    "backend developer satendra",
+    "satendra mern expert",
+    "snboy developer",
+    "snboy portfolio",
+    "mern stack expert",
+    "mern developer snboy",
+    "full stack engineer satendra",
+    "software engineer satendra",
+    "next.js developer satendra",
+    "satendra js developer",
+  ],
+};
 
 
 export default function RootLayout({ children }) {
