@@ -1,5 +1,6 @@
 "use client";
 // @flow strict
+import * as React from 'react'
 import { isValidEmail } from "@/utils/check-email";
 import axios from "axios";
 import { useState } from "react";
@@ -14,6 +15,7 @@ function ContactForm() {
     email: "",
     message: "",
   });
+  // const [sending, setSending] = React.useState(false)
 
   const checkRequired = () => {
     if (userInput.email && userInput.message && userInput.name) {
@@ -52,6 +54,48 @@ function ContactForm() {
       setIsLoading(false);
     };
   };
+  const url = process.env.NEXT_PUBLIC_SERVER_URL
+  const [sending, setSending] = React.useState(false)
+  const [name, setName] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  const [phone, setPhone] = React.useState();
+  const [message, setMessage] = React.useState("");
+  const Submit = (e) => {
+      e.preventDefault()
+
+
+  }
+  const contactJSON = { name, email, phone, message }
+  const [valid,setValid]=React.useState(false)
+  const HandleSend = (e) => {
+    e.preventDefault()
+      if(name===""){
+          setValid(true)
+          toast.error("Name is required")
+          return
+      }
+      setSending(true)
+      axios
+          .post(`https://server-nine-sooty.vercel.app/contact`, contactJSON)
+          .then((response) => {
+            
+            
+              if (response.data?.type === "success") {
+                  toast.success("Message sent successfully!")
+                  setSending(false)
+                  setMessage("");
+                  setPhone("")
+                  setEmail("");
+                  setName("");
+
+              }
+
+
+          })
+          .catch((error) => {
+            toast.error(`${error}`)
+          });
+  }
 
   return (
     <div>
@@ -66,9 +110,9 @@ function ContactForm() {
               type="text"
               maxLength="100"
               required={true}
-              onChange={(e) => setUserInput({ ...userInput, name: e.target.value })}
+              onChange={(e) => setName(e.target.value)}
               onBlur={checkRequired}
-              value={userInput.name}
+              value={name}
             />
           </div>
 
@@ -79,11 +123,11 @@ function ContactForm() {
               type="email"
               maxLength="100"
               required={true}
-              value={userInput.email}
-              onChange={(e) => setUserInput({ ...userInput, email: e.target.value })}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               onBlur={() => {
                 checkRequired();
-                setError({ ...error, email: !isValidEmail(userInput.email) });
+                setError({ ...error, email: !isValidEmail(email) });
               }}
             />
             {error.email && <p className="text-sm text-red-400">Please provide a valid email!</p>}
@@ -96,10 +140,10 @@ function ContactForm() {
               maxLength="500"
               name="message"
               required={true}
-              onChange={(e) => setUserInput({ ...userInput, message: e.target.value })}
+              onChange={(e) => setMessage(e.target.value)}
               onBlur={checkRequired}
               rows="4"
-              value={userInput.message}
+              value={message}
             />
           </div>
           <div className="flex flex-col items-center gap-3">
@@ -109,12 +153,12 @@ function ContactForm() {
             <button
               className="flex items-center gap-1 hover:gap-3 rounded-full bg-gradient-to-r from-pink-500 to-violet-600 px-5 md:px-12 py-2.5 md:py-3 text-center text-xs md:text-sm font-medium uppercase tracking-wider text-white no-underline transition-all duration-200 ease-out hover:text-white hover:no-underline md:font-semibold"
               role="button"
-              onClick={handleSendMail}
+              onClick={HandleSend}
               disabled={isLoading}
             >
               {
                 isLoading ?
-                <span>Sending Message...</span>:
+                <CircularProgress />:
                 <span className="flex items-center gap-1">
                   Send Message
                   <TbMailForward size={20} />
