@@ -8,10 +8,10 @@ export const personalData = {
   address: 'Sector 15 ,Noida  Uttar Pradesh India',
   github: 'https://github.com/web-developer-sn',
   facebook: '',
-  linkedIn: '',
-  twitter: '',
-  stackOverflow: '',
-  leetcode: "",
+  linkedIn: 'https://www.linkedin.com/in/satendra-sn',
+  twitter: 'https://x.com/webdevelopersn',
+  stackOverflow: 'https://stackoverflow.com/users/30003750/satendra',
+  leetcode: "https://leetcode.com/u/web-developer-sn/",
   devUsername: "",
-  resume: ""
+  resume: "https://drive.google.com/file/d/1j5QlWa6dZORQdKrMxmfDl2nvjv2yg6NX/view?usp=drive_link"
 }
